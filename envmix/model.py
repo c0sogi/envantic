@@ -43,10 +43,13 @@ class EnvMixModel(BaseModel):
             extra = finfo.json_schema_extra
             if isinstance(extra, dict):
                 custom = extra.get("env")
+                prefix: bool = bool(extra.get("prefix", True))
                 if isinstance(custom, str) and custom:
                     env_name = custom
+            else:
+                prefix = True
 
-            env_key = (cls.__env_prefix__ + env_name).upper()
+            env_key = ((cls.__env_prefix__ if prefix else "") + env_name).upper()
             if env_key in os.environ:
                 ann = finfo.annotation or str
                 vals[name] = _cast(os.environ[env_key], ann)

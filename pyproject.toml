@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "envmix"
-version = "0.1.0"
+version = "0.1.1"
 description = "Pydantic v2 mixin to load settings from environment variables with robust casting"
 readme = "README.md"
 requires-python = ">=3.9"
