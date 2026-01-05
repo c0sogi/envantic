@@ -12,7 +12,7 @@ wheels = [
 ]
 
 [[package]]
-name = "envmix"
+name = "envantic"
 version = "0.1.2"
 source = { editable = "." }
 dependencies = [
@@ -23,7 +23,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "pydantic", specifier = ">=2.0" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "python-dotenv", specifier = ">=1.0.0" },
 ]
 
 [[package]]

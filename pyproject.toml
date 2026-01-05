@@ -3,12 +3,11 @@ requires = ["uv_build>=0.9.21,<0.10.0"]
 build-backend = "uv_build"
 
 [project]
-name = "envmix"
+name = "envantic"
 version = "0.1.2"
-description = "Pydantic v2 mixin to load settings from environment variables with robust casting"
+description = "Pydantic-powered, type-safe environment variable loader"
 readme = "README.md"
 requires-python = ">=3.9"
-license = { file = "LICENSE" }
 keywords = ["pydantic", "environment", "config", "settings", "dotenv"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -23,11 +22,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Typing :: Typed",
 ]
-dependencies = [
-    "pydantic>=2.0",
-    "python-dotenv>=1.2.1",
-]
+dependencies = ["pydantic>=2.0", "python-dotenv>=1.0.0"]
 
 [project.urls]
-Homepage = "https://github.com/c0sogi/envmix"
-Issues = "https://github.com/c0sogi/envmix/issues"
+Homepage = "https://github.com/c0sogi/envantic"
+Issues = "https://github.com/c0sogi/envantic/issues"

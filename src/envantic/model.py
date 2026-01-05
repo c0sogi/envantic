@@ -21,7 +21,7 @@ _falsy = {"0", "false", "no", "off", "n", "f"}
 T = TypeVar("T")
 
 
-class EnvMixModel(BaseModel):
+class EnvModel(BaseModel):
     """
     A Pydantic v2 model mixin that populates fields from environment variables.
 
@@ -122,18 +122,18 @@ class EnvMixModel(BaseModel):
         return cls.from_env(**overrides)
 
 
-def get_registered_models() -> dict[Type[EnvMixModel], dict[str, str]]:
+def get_registered_models() -> dict[Type[EnvModel], dict[str, str]]:
     return {
         model_cls: {
             field_name: _get_env_var_name(model_cls, field_name, finfo)
             for field_name, finfo in model_cls.model_fields.items()
         }
-        for model_cls in list(EnvMixModel.__env_registry__)
+        for model_cls in list(EnvModel.__env_registry__)
     }
 
 
-def get_registered_envs() -> dict[str, set[tuple[Type[EnvMixModel], str]]]:
-    env_var_map: dict[str, set[tuple[Type[EnvMixModel], str]]] = {}
+def get_registered_envs() -> dict[str, set[tuple[Type[EnvModel], str]]]:
+    env_var_map: dict[str, set[tuple[Type[EnvModel], str]]] = {}
     for model_cls, info in get_registered_models().items():
         for field_name, env_var_name in info.items():
             if env_var_name not in env_var_map:
@@ -234,7 +234,7 @@ def _cast(value: str, tp: Type[T]) -> object:
         return value
 
 
-def _get_env_var_name(cls: Type[EnvMixModel], field_name: str, finfo: Any) -> str:
+def _get_env_var_name(cls: Type[EnvModel], field_name: str, finfo: Any) -> str:
     """Helper function to determine environment variable name for a field"""
     env_name = field_name
     extra = finfo.json_schema_extra

@@ -5,16 +5,16 @@ from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
-from envmix import EnvMixModel, get_registered_envs, get_registered_models
+from envantic import EnvModel, get_registered_envs, get_registered_models
 
 
-class TestEnvMixModel(unittest.TestCase):
+class TestEnvModel(unittest.TestCase):
     def test_from_env(self) -> None:
         class DBConfig(BaseModel):
             host: str
             port: int
 
-        class AppConfig(EnvMixModel):
+        class AppConfig(EnvModel):
             __env_prefix__ = "APP_"  # Optional prefix for env keys
             host: str = "127.0.0.1"
             port: int = 8080
@@ -79,12 +79,12 @@ class TestEnvMixModel(unittest.TestCase):
         """Test registry functions"""
 
         # Define test models
-        class TestConfig1(EnvMixModel):
+        class TestConfig1(EnvModel):
             __env_prefix__ = "TEST1_"
             host: str = "localhost"
             port: int = 8080
 
-        class TestConfig2(EnvMixModel):
+        class TestConfig2(EnvModel):
             __env_prefix__ = "TEST2_"
             debug: bool = False
             name: str = "test"
